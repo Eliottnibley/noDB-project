@@ -8,7 +8,7 @@ module.exports = {
   },
 
   postTeams: (req, res) => {
-    let teamsList = req.body
+    let {teamsList} = req.body
     if (teamsList.length !== 8){
       return res.status(500).send('Must fill in all Inputs')
     }
@@ -38,7 +38,6 @@ module.exports = {
 
       id++
     }
-
     res.status(200).send(teams)
   },
 

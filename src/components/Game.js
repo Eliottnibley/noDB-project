@@ -9,8 +9,9 @@ class Game extends Component {
   }
 
   render () {
+    console.log(this.props.teams)
     return (
-      <div className='game-display'>
+      <div className={`game${this.props.teams[0].location.charAt(0)}`}>
         
       </div>
     )
