@@ -12,7 +12,8 @@ class Game extends Component {
     if (this.props.teams.length !== 0){
       return (
         <div className={`game${this.props.teams[0].location.charAt(0)}`}>
-          this game is showing
+          <p>Team A</p>
+          <p>Team B</p>
         </div>
       )
     }

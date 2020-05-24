@@ -122,7 +122,7 @@ class App extends Component {
             <Header/>
             This is a mok up
             <div className='display-games'>
-              
+              <Game teams={[{id:1, name: 'a', location:'1a'}, {id:2, name: 'b', location:'1b'}]}/>
             </div>
             <button onClick={() => this.toggleInSetup()}>Back to Setup</button>
           </div>

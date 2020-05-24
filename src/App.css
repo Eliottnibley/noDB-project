@@ -3,7 +3,6 @@
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
-  background-color: rgb(233, 233, 233);
 }
 
 .App {
@@ -36,6 +35,12 @@
   width: 200px;
   height: 100px;
   margin: 10px;
-  background-color: aqua;
+}
+
+.game1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
 }
 
