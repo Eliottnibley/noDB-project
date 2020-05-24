@@ -3,6 +3,13 @@
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
+  background-color: rgb(233, 233, 233);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .setup-page {
@@ -17,8 +24,16 @@
   margin: 10px;
 }
 
+.display-games {
+  width: 800px;
+  height: 450px;
+  background-image: url('https://dryeraseposter2.files.wordpress.com/2015/09/8-team-dry-erase-bracket-poster.png?w=625&h=500');
+  background-position: center;
+  background-size: 800px 450px;
+}
+
 .display-games div {
-  width: 100px;
+  width: 200px;
   height: 100px;
   margin: 10px;
   background-color: aqua;

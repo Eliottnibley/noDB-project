@@ -9,12 +9,18 @@ class Game extends Component {
   }
 
   render () {
-    console.log(this.props.teams)
-    return (
-      <div className={`game${this.props.teams[0].location.charAt(0)}`}>
-        
-      </div>
-    )
+    if (this.props.teams.length !== 0){
+      return (
+        <div className={`game${this.props.teams[0].location.charAt(0)}`}>
+          this game is showing
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>nobody in this game</div>
+      )
+    }
   }
 }
 

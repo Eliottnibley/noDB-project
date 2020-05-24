@@ -11,7 +11,6 @@ class App extends Component {
     super() 
     this.state = {
       teams: [],
-      sortedTeams: {},
       isSetup: true,
       bracketDone: false,
     }
@@ -77,7 +76,7 @@ class App extends Component {
         sort['game7'].push(team)
       }
     }
-    this.setState({sortedTeams: sort})
+    return sort
   }
 
   render() {
@@ -99,34 +98,34 @@ class App extends Component {
     }
     else {
       if (this.state.teams[0]){
-        this.sortTeams()
-        console.log(this.state.sortedTeams)
-        if(this.state.sortedTeams.game1){
-          return (
-            <div className='App'>
-              <Header/>
-              <div className='display-games'>
-                <Game teams={this.state.sortedTeams.game1}/>
-                <Game teams={this.state.sortedTeams.game2}/>
-                <Game teams={this.state.sortedTeams.game3}/>
-                <Game teams={this.state.sortedTeams.game4}/>
-                <Game teams={this.state.sortedTeams.game5}/>
-                <Game teams={this.state.sortedTeams.game6}/>
-                <Game teams={this.state.sortedTeams.game7}/>
-              </div>
-              <button onClick={() => this.toggleInSetup()}>Back to Setup</button>
+        let sortedTeams = this.sortTeams()
+        return (
+          <div className='App'>
+            <Header/>
+            <div className='display-games'>
+              <Game teams={sortedTeams.game1}/>
+              <Game teams={sortedTeams.game2}/>
+              <Game teams={sortedTeams.game3}/>
+              <Game teams={sortedTeams.game4}/>
+              <Game teams={sortedTeams.game5}/>
+              <Game teams={sortedTeams.game6}/>
+              <Game teams={sortedTeams.game7}/>
             </div>
-          )
-        }
-        else {
-          return (
-            <div>sortedTeams is empty</div>
-          )
-        }
+            <button onClick={() => this.toggleInSetup()}>Back to Setup</button>
+          </div>
+        )
+        
       }
       else {
         return (
-          <div>teams is an empty array</div>
+          <div className='App'>
+            <Header/>
+            This is a mok up
+            <div className='display-games'>
+              
+            </div>
+            <button onClick={() => this.toggleInSetup()}>Back to Setup</button>
+          </div>
         )
       }
     }
