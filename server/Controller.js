@@ -1,10 +1,11 @@
 let teams = []
+let winners = []
 let id = 1
 const startList = ['1a', '1b', '2a', '2b', '3a', '3b', '4a', '4b']
 
 module.exports = {
-  getTeams: (req, res) => {
-    res.status(200).send(teams)
+  getTeam: (req, res) => {
+    res.status(200).send(winners)
   },
 
   postTeams: (req, res) => {
@@ -61,6 +62,8 @@ module.exports = {
     loc = location.split('')
     let newLoc = ''
 
+    const index = teams.findIndex(elem => elem.location === location)
+
     if(+loc[0] === 1){
       newLoc = '5a'
     }
@@ -81,8 +84,8 @@ module.exports = {
     }
     if (+loc[0] === 7) {
       newLoc = '8a'
+      winners.push(teams[index].name)
     }
-    const index = teams.findIndex(elem => elem.location === location)
 
     teams[index].location = newLoc
 
@@ -92,7 +95,6 @@ module.exports = {
   delete: (req, res) => {
     teams = []
     id = 1
-    console.log(teams)
     res.status(200).send(teams)
   }
 }

@@ -27,7 +27,7 @@ class Setup extends Component {
         <input onChange={(e) => this.handleInputChange(5, e)} placeholder='Team 6'></input>
         <input onChange={(e) => this.handleInputChange(6, e)} placeholder='Team 7'></input>
         <input onChange={(e) => this.handleInputChange(7, e)} placeholder='Team 8'></input>
-        <button onClick={() => this.props.createBracket(this.state.teamsList)}>Create Bracket</button>
+        <button className='create' onClick={() => this.props.createBracket(this.state.teamsList)}>Create Bracket</button>
       </div>
     )
     

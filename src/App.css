@@ -3,6 +3,7 @@
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
+  font-family: 'Baloo 2', cursive;
 }
 
 .App {
@@ -106,16 +107,41 @@
   left: 395px;
 }
 
+button {
+  border: 0px;
+  width: 70px;
+  height: 20px;
+  background-color: rgb(96, 152, 255);
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: rgb(71, 112, 189);
+}
+
+.create {
+  width: 100px;
+  height: 20px;
+}
+
+.reset {
+  width: 100px;
+  height: 20px;
+}
+
+
 .winner-placement {
   position: relative;
-  bottom: 730px;
+  bottom: 725px;
   left: 570px;
   height: 200px;
   width: 200px;
 }
 
 .Winner-animation {
-  background-color: aqua;
-  width: 500px;
-  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  width: 300px;
 }

@@ -5,7 +5,7 @@ const app = express()
 const SERVER_PORT = 3004
 app.use(express.json())
 
-app.get('/teams', ctlr.getTeams)
+app.get('/teams', ctlr.getTeam)
 app.post('/teams', ctlr.postTeams)
 app.put('/teams/:id', ctlr.editTeam)
 app.put('/teams', ctlr.updateLocation)

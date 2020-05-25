@@ -11,6 +11,7 @@ class App extends Component {
     super() 
     this.state = {
       teams: [],
+      winners: [],
       isSetup: true,
       bracketDone: false,
     }
@@ -29,12 +30,7 @@ class App extends Component {
     .catch( err => console.log('teams did not post'))
 
     this.toggleInSetup()
-  }
-
-  getTeams () {
-    axios.get('/teams')
-    .then ((res) => this.setState({teams: res.data}))
-    .catch (err => console.log('could not get teams'))
+    this.getTeam()
   }
 
   toggleInSetup () {
@@ -48,9 +44,9 @@ class App extends Component {
     
   }
 
-  getTeams () {
-    axios.get('/teams')
-    .then (res => this.setState({teams: res.data}))
+  getTeam () {
+    axios.get(`/teams`)
+    .then (res => this.setState({winners: res.data}))
     .catch(err => console.log('get did not work'))
   }
 
@@ -64,11 +60,22 @@ class App extends Component {
   win (team) {
     if(team.length !== 0){
       return (
-        <div>{`${team[0].name}`}
-        <Winner/></div>
-
+        <Winner name={team[0].name}/>
       )
     }
+  }
+  
+  winnerCircle () {
+    let str = `Winner's Circle: `
+    for (let i = 0; i < this.state.winners.length; i++){
+      if (i == this.state.winners.length - 1){
+        str += `${this.state.winners[i]}`
+      }
+      else {
+        str += `${this.state.winners[i]}, `
+      }
+    }
+    return str
   }
 
   sortTeams () {
@@ -139,6 +146,7 @@ class App extends Component {
         return (
           <div className='App'>
             <Header/>
+            <h5>{this.winnerCircle()}</h5>
             <div className='display-games'>
               <Game advance={this.advance} teams={sortedTeams.game1}/>
               <Game advance={this.advance} teams={sortedTeams.game2}/>
@@ -151,7 +159,8 @@ class App extends Component {
                 {this.win(sortedTeams.winner)}
               </div>
             </div>
-            <button onClick={() => this.deleteTeams()}>Reset Bracket</button>
+            <button className='reset' onClick={() => this.deleteTeams()}>Reset Bracket</button>
+            
           </div>
         )
         
