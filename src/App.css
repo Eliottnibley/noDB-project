@@ -32,15 +32,90 @@
 }
 
 .display-games div {
-  width: 200px;
-  height: 100px;
+  width: 190px;
   margin: 10px;
+}
+
+.display-games div span {
+  display: flex;
+  justify-content: space-between;
 }
 
 .game1 {
   position: relative;
   display: flex;
   flex-direction: column;
-  
+  justify-content: space-between;
+  height: 80px;
 }
 
+.game2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80px;
+  top: 28px;
+}
+
+.game3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80px;
+  top: 57px;
+}
+
+.game4 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80px;
+  top: 84px;
+}
+
+.game5 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 140px;
+  bottom: 330px;
+  left: 198px;
+}
+
+.game6 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 142px;
+  bottom: 247px;
+  left: 198px;
+}
+
+.game7 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 258px;
+  bottom: 577px;
+  left: 395px;
+}
+
+.winner-placement {
+  position: relative;
+  bottom: 730px;
+  left: 570px;
+  height: 200px;
+  width: 200px;
+}
+
+.Winner-animation {
+  background-color: aqua;
+  width: 500px;
+  height: 400px;
+}

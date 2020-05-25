@@ -15,6 +15,9 @@ class App extends Component {
       bracketDone: false,
     }
     this.createBracket = this.createBracket.bind(this)
+    this.advance = this.advance.bind(this)
+    this.setState = this.setState.bind(this)
+    this.deleteTeams = this.deleteTeams.bind(this)
   }
 
   createBracket (teamsList) {
@@ -30,12 +33,42 @@ class App extends Component {
 
   getTeams () {
     axios.get('/teams')
-    .then (res => this.setState({teams: res.data}))
+    .then ((res) => this.setState({teams: res.data}))
     .catch (err => console.log('could not get teams'))
   }
 
   toggleInSetup () {
     this.setState({isSetup: !this.state.isSetup})
+  }
+
+  advance (location) {
+    let loc = {location: location}
+    axios.put('/teams', loc)
+    .then ((res) => this.setState({teams: res.data,}))
+    
+  }
+
+  getTeams () {
+    axios.get('/teams')
+    .then (res => this.setState({teams: res.data}))
+    .catch(err => console.log('get did not work'))
+  }
+
+  deleteTeams () {
+    axios.delete('/teams')
+    .then((res) => this.setState({teams: res.data}))
+    .catch(err => console.log('delete did not work'))
+    this.toggleInSetup()
+  }
+
+  win (team) {
+    if(team.length !== 0){
+      return (
+        <div>{`${team[0].name}`}
+        <Winner/></div>
+
+      )
+    }
   }
 
   sortTeams () {
@@ -48,6 +81,7 @@ class App extends Component {
       game5: [],
       game6: [],
       game7: [],
+      winner: []
     }
     let team = {}
     for (let i = 0; i < this.state.teams.length; i++){
@@ -74,6 +108,9 @@ class App extends Component {
       }
       if (char === '7'){
         sort['game7'].push(team)
+      }
+      if (char === '8'){
+        sort['winner'].push(team)
       }
     }
     return sort
@@ -103,15 +140,18 @@ class App extends Component {
           <div className='App'>
             <Header/>
             <div className='display-games'>
-              <Game teams={sortedTeams.game1}/>
-              <Game teams={sortedTeams.game2}/>
-              <Game teams={sortedTeams.game3}/>
-              <Game teams={sortedTeams.game4}/>
-              <Game teams={sortedTeams.game5}/>
-              <Game teams={sortedTeams.game6}/>
-              <Game teams={sortedTeams.game7}/>
+              <Game advance={this.advance} teams={sortedTeams.game1}/>
+              <Game advance={this.advance} teams={sortedTeams.game2}/>
+              <Game advance={this.advance} teams={sortedTeams.game3}/>
+              <Game advance={this.advance} teams={sortedTeams.game4}/>
+              <Game advance={this.advance} teams={sortedTeams.game5}/>
+              <Game advance={this.advance} teams={sortedTeams.game6}/>
+              <Game advance={this.advance} teams={sortedTeams.game7}/>
+              <div className='winner-placement'>
+                {this.win(sortedTeams.winner)}
+              </div>
             </div>
-            <button onClick={() => this.toggleInSetup()}>Back to Setup</button>
+            <button onClick={() => this.deleteTeams()}>Reset Bracket</button>
           </div>
         )
         
@@ -120,11 +160,9 @@ class App extends Component {
         return (
           <div className='App'>
             <Header/>
-            This is a mok up
             <div className='display-games'>
-              <Game teams={[{id:1, name: 'a', location:'1a'}, {id:2, name: 'b', location:'1b'}]}/>
+              
             </div>
-            <button onClick={() => this.toggleInSetup()}>Back to Setup</button>
           </div>
         )
       }

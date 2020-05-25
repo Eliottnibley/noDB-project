@@ -38,6 +38,7 @@ module.exports = {
 
       id++
     }
+
     res.status(200).send(teams)
   },
 
@@ -91,6 +92,7 @@ module.exports = {
   delete: (req, res) => {
     teams = []
     id = 1
+    console.log(teams)
     res.status(200).send(teams)
   }
 }
